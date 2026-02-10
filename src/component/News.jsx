@@ -9,11 +9,25 @@ export default function News() {
   const [showButton, setShowButton] = useState(false);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const navigate = useNavigate();
 
+useEffect(() => {
+  if (darkMode) {
+    document.body.style.backgroundColor = "#121212";
+  } else {
+    document.body.style.backgroundColor = "white";
+  }
+}, [darkMode]);
+
+const toggle=()=>{
+    setDarkMode(!darkMode);
+}
 
    const fecthedNews=async()=>{
     setLoading(true);
@@ -58,8 +72,6 @@ const navigate = useNavigate();
 }
 
    
-
-   
   async function searchNews() {
     const res = await fetch(
       `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${search}`
@@ -70,8 +82,8 @@ const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&q=apple`)
-      .then((res) => res.json())
-      .then((data) => setNews(data.results));
+      .then((res)=> res.json())
+      .then((data)=> setNews(data.results));
   }, []);
 
 
@@ -105,8 +117,9 @@ const navigate = useNavigate();
   }
 
   return (
-    <div className="news-container">
-        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout}/>
+    <div className={darkMode ? "news-container dark" : "news-container"}>
+        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout} toggle={toggle} darkMode={darkMode}/>
+    
 
 
       <div className="search-box">
