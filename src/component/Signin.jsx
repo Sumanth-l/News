@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signin.css";
+import Navbar from "./NavBar";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -34,8 +35,12 @@ export default function Signin() {
   };
 
   return (
+   <div>
+    <Navbar page="auth"/>
     <div className="signin-container">
+         
       <div className="signin-box">
+        
         <h1>Signin Page</h1>
 
         <form onSubmit={handleSubmit}>
@@ -58,6 +63,7 @@ export default function Signin() {
           <button type="submit">Signin</button>
         </form>
       </div>
+    </div>
     </div>
   );
 }

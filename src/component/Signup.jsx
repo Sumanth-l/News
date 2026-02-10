@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Signup.css";
 
+
 export default function Signup() {
   const [user, setUser] = useState({
     username: "",
@@ -21,6 +22,7 @@ export default function Signup() {
   };
 
   return (
+    <div>
     <div className="signup-container">
       <div className="signup-box">
         <h1>Signup Page</h1>
@@ -53,6 +55,7 @@ export default function Signup() {
           <button type="submit">Signup</button>
         </form>
       </div>
+    </div>
     </div>
   );
 }

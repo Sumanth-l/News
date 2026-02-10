@@ -2,27 +2,64 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 18px 40px;
   background: black;
   color: white;
 }
 
 .logo {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li {
   cursor: pointer;
   font-size: 16px;
+  color: white;
 }
 
 .nav-links li:hover {
   color: orange;
+}
+
+/* Right side buttons container */
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Buttons */
+.nav-buttons button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav-buttons button:hover {
+  background: orange;
+  color: black;
+}
+
+/* Logout button special */
+.logout-btn {
+  background: red !important;
+}
+
+.logout-btn:hover {
+  background: darkred !important;
+  color: white !important;
 }

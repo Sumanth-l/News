@@ -118,19 +118,21 @@ const toggle=()=>{
 
   return (
     <div className={darkMode ? "news-container dark" : "news-container"}>
-        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout} toggle={toggle} darkMode={darkMode}/>
+        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout} toggle={toggle} darkMode={darkMode} showSearch={showSearch}  setShowSearch={setShowSearch} page="news"/>
     
 
 
-      <div className="search-box">
-        <input
-          type="text"
-          placeholder="Search news..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button onClick={searchNews}>Search</button>
-      </div>
+      {showSearch && (
+  <div className="search-box">
+    <input
+      type="text"
+      placeholder="Search news..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+    <button onClick={searchNews}>Search</button>
+  </div>
+)}
 
       {news.length > 0 &&
         news.map((item, id) => (
