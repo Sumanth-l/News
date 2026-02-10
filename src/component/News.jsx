@@ -20,6 +20,15 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
    }
 
+    const fecthedbussiness=async()=>{
+    setLoading(true);
+   const res=await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=business&language=en`)
+   const data= await res.json()
+   setNews(data.results || []);
+   setLoading(false);
+
+   }
+
    const fetchSports=async()=>{
     setLoading(true);
     const res=await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=sports&language=en`)
@@ -78,7 +87,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
   return (
     <div className="news-container">
-        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology}/>
+        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness}/>
 
 
       <div className="search-box">
