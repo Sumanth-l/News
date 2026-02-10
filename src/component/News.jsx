@@ -1,14 +1,27 @@
 import { useEffect, useState } from "react";
 import "./News.css";
+import NavBar from "./NavBar";
 
 export default function News() {
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
   const [showButton, setShowButton] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
 
+   const fecthedNews=async()=>{
+    setLoading(true);
+   const res=await fetch(`https://newsdata.io/api/1/latest?apikey=${apiKey}&language=en`)
+   const data= await res.json()
+   setNews(data.results || []);
+   setLoading(false);
+
+   }
+   
+
+   
   async function searchNews() {
     const res = await fetch(
       `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${search}`
@@ -47,7 +60,8 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
   return (
     <div className="news-container">
-      <h1>News Component</h1>
+        <NavBar news={fecthedNews}/>
+
 
       <div className="search-box">
         <input
