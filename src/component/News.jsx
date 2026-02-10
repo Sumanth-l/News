@@ -60,7 +60,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
   return (
     <div className="news-container">
-        <NavBar news={fecthedNews}/>
+        <NavBar fetchLatestNews={fecthedNews} loading={loading}/>
 
 
       <div className="search-box">
