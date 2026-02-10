@@ -1,7 +1,7 @@
     import "./NavBar.css";
     import "./Navbar.css";
 
-    export default function Navbar({ fetchLatestNews,loading,sport,tech,busi,cat }) {
+    export default function Navbar({ fetchLatestNews,loading,sport,tech,busi,cat,log}) {
     return (
         <div className="navbar">
         <h2 className="logo">NewsApp</h2>
@@ -12,6 +12,7 @@
             <li onClick={tech}>{loading && cat=="technology"?"loading":"Technology"}</li>
             <li onClick={busi}>{loading && cat=="business"?"loading":"Business"}</li>
         </ul>
+        <button onClick={log}>logout</button>
         </div>
     );
     }

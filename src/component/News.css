@@ -54,3 +54,43 @@
 .top-btn:hover {
   background-color: #333;
 }
+
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px auto;
+  width: 80%;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-box input:focus {
+  border-color: black;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+}
+
+.search-box button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background: #333;
+}

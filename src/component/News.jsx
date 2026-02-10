@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./News.css";
 import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
 
 export default function News() {
   const [news, setNews] = useState([]);
@@ -10,6 +11,8 @@ export default function News() {
   const [category, setCategory] = useState("");
 
 const apiKey = import.meta.env.VITE_API_KEY;
+
+const navigate = useNavigate();
 
 
    const fecthedNews=async()=>{
@@ -52,7 +55,6 @@ const apiKey = import.meta.env.VITE_API_KEY;
    setNews(data.results || []);
    setLoading(false); 
    setCategory("");
-
 }
 
    
@@ -92,11 +94,19 @@ const apiKey = import.meta.env.VITE_API_KEY;
       top: 0,
       behavior: "smooth"
     });
+
+
   };
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/signin");
+  }
 
   return (
     <div className="news-container">
-        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category}/>
+        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout}/>
 
 
       <div className="search-box">
