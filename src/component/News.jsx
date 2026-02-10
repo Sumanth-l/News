@@ -19,6 +19,24 @@ const apiKey = import.meta.env.VITE_API_KEY;
    setLoading(false);
 
    }
+
+   const fetchSports=async()=>{
+    setLoading(true);
+    const res=await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=sports&language=en`)
+    const data= await res.json()
+    setNews(data.results || []);
+    setLoading(false);
+   }
+
+   const fetchTechnology=async()=>{
+   setLoading(true);
+   const res=await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=technology&language=en`)  
+   const data= await res.json()
+   setNews(data.results || []);
+   setLoading(false); 
+
+}
+
    
 
    
@@ -60,7 +78,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
   return (
     <div className="news-container">
-        <NavBar fetchLatestNews={fecthedNews} loading={loading}/>
+        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology}/>
 
 
       <div className="search-box">
