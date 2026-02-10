@@ -7,42 +7,51 @@ export default function News() {
   const [search, setSearch] = useState("");
   const [showButton, setShowButton] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState("");
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
 
    const fecthedNews=async()=>{
     setLoading(true);
+    setCategory("latest");
    const res=await fetch(`https://newsdata.io/api/1/latest?apikey=${apiKey}&language=en`)
    const data= await res.json()
    setNews(data.results || []);
    setLoading(false);
+   setCategory("");
 
    }
 
     const fecthedbussiness=async()=>{
     setLoading(true);
+    setCategory("business");
    const res=await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=business&language=en`)
    const data= await res.json()
    setNews(data.results || []);
    setLoading(false);
+   setCategory("");
 
    }
 
    const fetchSports=async()=>{
     setLoading(true);
+    setCategory("sports");
     const res=await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=sports&language=en`)
     const data= await res.json()
     setNews(data.results || []);
     setLoading(false);
+    setCategory("");
    }
 
    const fetchTechnology=async()=>{
    setLoading(true);
+   setCategory("technology");
    const res=await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=technology&language=en`)  
    const data= await res.json()
    setNews(data.results || []);
    setLoading(false); 
+   setCategory("");
 
 }
 
@@ -87,7 +96,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
   return (
     <div className="news-container">
-        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness}/>
+        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category}/>
 
 
       <div className="search-box">
