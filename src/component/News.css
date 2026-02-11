@@ -192,3 +192,24 @@
 .search-box button:hover {
   background: white;
 }
+
+.bookmark-btns {
+  display: flex;
+  gap: 15px;
+  margin: 20px auto;
+  justify-content: center;
+}
+
+.bookmark-btns button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #ffcc00;
+  color: black;
+}
+
+.bookmark-btns button:hover {
+  background: orange;
+}

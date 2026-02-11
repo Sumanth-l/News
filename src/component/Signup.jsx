@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Signup.css";
+import Navbar from "./NavBar";
 
 
 export default function Signup() {
@@ -23,6 +24,7 @@ export default function Signup() {
 
   return (
     <div>
+        <Navbar page="auth"/>
     <div className="signup-container">
       <div className="signup-box">
         <h1>Signup Page</h1>

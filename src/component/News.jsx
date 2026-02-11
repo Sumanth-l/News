@@ -17,6 +17,24 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 const navigate = useNavigate();
 
+
+const handleSave=(item)=>{
+  
+  const savedNews = JSON.parse(localStorage.getItem("savedNews")) || [];
+  const alreadySaved=savedNews.some((n)=>n.link===item.link);
+ 
+  if(alreadySaved){
+    alert("News already saved!");
+    return;
+  }
+
+   savedNews.push(item);
+  localStorage.setItem("savedNews", JSON.stringify(savedNews));
+  alert("News Saved!");
+}
+
+
+
 useEffect(() => {
   if (darkMode) {
     document.body.style.backgroundColor = "#121212";
@@ -110,6 +128,10 @@ const toggle=()=>{
 
   };
 
+  const showBookmarks = () => {
+  const savedNews = JSON.parse(localStorage.getItem("savedNews")) || [];
+  setNews(savedNews);
+};
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
@@ -118,9 +140,9 @@ const toggle=()=>{
 
   return (
     <div className={darkMode ? "news-container dark" : "news-container"}>
-        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout} toggle={toggle} darkMode={darkMode} showSearch={showSearch}  setShowSearch={setShowSearch} page="news"/>
-    
-
+        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout} toggle={toggle} darkMode={darkMode} showSearch={showSearch}  setShowSearch={setShowSearch} sb={showBookmarks} page="news"/>
+ <div className="bookmark-btns">
+</div>
 
       {showSearch && (
   <div className="search-box">
@@ -136,17 +158,19 @@ const toggle=()=>{
 
       {news.length > 0 &&
         news.map((item, id) => (
-          <div className="news-card" key={id}>
-            <div>
-              <img src={item.image_url} alt={item.title} />
-            </div>
+  <div className="news-card" key={id}>
+    <div>
+      <img src={item.image_url} alt={item.title} />
+    </div>
 
-            <div className="news-desc">
-              <h2>{item.title}</h2>
-              <p>{item.description}</p>
-            </div>
-          </div>
-        ))}
+    <button onClick={() => handleSave(item)}>Save</button>
+
+    <div className="news-desc">
+      <h2>{item.title}</h2>
+      <p>{item.description}</p>
+    </div>
+  </div>
+))}
 
      
       {showButton && (

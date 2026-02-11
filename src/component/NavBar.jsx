@@ -1,7 +1,7 @@
     import "./NavBar.css";
     
 
-    export default function Navbar({ fetchLatestNews,loading,sport,tech,busi,cat,log,toggle,darkMode,showSearch,setShowSearch,page}) {
+    export default function Navbar({ fetchLatestNews,loading,sport,tech,busi,cat,log,toggle,darkMode,showSearch,setShowSearch,page,sb}) {
     return (
         <div className="navbar">
         <h2 className="logo">NewsApp</h2>
@@ -18,10 +18,13 @@
 </button>
            <button className="dark-btn" onClick={toggle}>
   {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
+  
 </button>
+<button onClick={sb}>📌 Bookmarks</button>
         <button className="logout-btn" onClick={log}>
   Logout
 </button>
+
       
         </div>
         </> )}
