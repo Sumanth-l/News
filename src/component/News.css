@@ -213,3 +213,30 @@
 .bookmark-btns button:hover {
   background: orange;
 }
+
+.news-card {
+  position: relative;
+}
+
+.save-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #ffcc00;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.save-btn.saved {
+  background: transparent;   /* 🔥 removes outer box */
+  padding: 0;                /* removes extra space */
+  font-size: 22px;
+}
+
+.save-btn:hover {
+  transform: scale(1.2);
+}

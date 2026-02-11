@@ -11,6 +11,9 @@ export default function News() {
   const [category, setCategory] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [Home,setHome]=useState(false);
+  const [savedLinks, setSavedLinks] = useState([]);
+  
 
 
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -18,21 +21,24 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const navigate = useNavigate();
 
 
-const handleSave=(item)=>{
-  
+const handleSave = (item) => {
   const savedNews = JSON.parse(localStorage.getItem("savedNews")) || [];
-  const alreadySaved=savedNews.some((n)=>n.link===item.link);
- 
-  if(alreadySaved){
-    alert("News already saved!");
-    return;
-  }
 
-   savedNews.push(item);
+  const alreadySaved = savedNews.some((n) => n.link === item.link);
+
+  if (alreadySaved) return;
+
+  savedNews.push(item);
   localStorage.setItem("savedNews", JSON.stringify(savedNews));
-  alert("News Saved!");
-}
 
+  setSavedLinks([...savedLinks, item.link]);
+};
+
+
+const goHome = () => {
+  fecthedNews();
+  setHome(false);
+};
 
 
 useEffect(() => {
@@ -131,6 +137,7 @@ const toggle=()=>{
   const showBookmarks = () => {
   const savedNews = JSON.parse(localStorage.getItem("savedNews")) || [];
   setNews(savedNews);
+  setHome(true);
 };
 
   const handleLogout = () => {
@@ -140,7 +147,7 @@ const toggle=()=>{
 
   return (
     <div className={darkMode ? "news-container dark" : "news-container"}>
-        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout} toggle={toggle} darkMode={darkMode} showSearch={showSearch}  setShowSearch={setShowSearch} sb={showBookmarks} page="news"/>
+        <NavBar fetchLatestNews={fecthedNews} loading={loading} sport={fetchSports} tech={fetchTechnology} busi={fecthedbussiness} cat={category} log={handleLogout} toggle={toggle} darkMode={darkMode} showSearch={showSearch}  setShowSearch={setShowSearch} sb={showBookmarks} page="news" home={Home} goHome={goHome}/>
  <div className="bookmark-btns">
 </div>
 
@@ -163,7 +170,14 @@ const toggle=()=>{
       <img src={item.image_url} alt={item.title} />
     </div>
 
-    <button onClick={() => handleSave(item)}>Save</button>
+    <button
+  className={savedLinks.includes(item.link) ? "save-btn saved" : "save-btn"}
+  onClick={() => handleSave(item)}
+>
+  ⭐
+</button>
+
+
 
     <div className="news-desc">
       <h2>{item.title}</h2>
