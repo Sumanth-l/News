@@ -1,7 +1,7 @@
     import "./NavBar.css";
     
 
-    export default function Navbar({ fetchLatestNews,loading,sport,tech,busi,cat,log,toggle,darkMode,showSearch,setShowSearch,page,sb,home,goHome }) {
+    export default function Navbar({ fetchLatestNews,loading,sport,tech,busi,cat,log,toggle,darkMode,showSearch,setShowSearch,page,sb,home,goHome,save}) {
     return (
         <div className="navbar">
         <h2 className="logo">NewsApp</h2>

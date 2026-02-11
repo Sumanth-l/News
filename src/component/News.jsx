@@ -21,19 +21,20 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const navigate = useNavigate();
 
 
-const handleSave = (item) => {
+const handleSave=(item)=>{
+  
   const savedNews = JSON.parse(localStorage.getItem("savedNews")) || [];
+  const alreadySaved=savedNews.some((n)=>n.link===item.link);
+ 
+  if(alreadySaved){
+    alert("News already saved!");
+    return;
+  }
 
-  const alreadySaved = savedNews.some((n) => n.link === item.link);
-
-  if (alreadySaved) return;
-
-  savedNews.push(item);
+   savedNews.push(item);
   localStorage.setItem("savedNews", JSON.stringify(savedNews));
-
   setSavedLinks([...savedLinks, item.link]);
-};
-
+}
 
 const goHome = () => {
   fecthedNews();
@@ -170,13 +171,13 @@ const toggle=()=>{
       <img src={item.image_url} alt={item.title} />
     </div>
 
-    <button
+   {!Home && <button
   className={savedLinks.includes(item.link) ? "save-btn saved" : "save-btn"}
   onClick={() => handleSave(item)}
 >
-  ⭐
+  ★
 </button>
-
+}
 
 
     <div className="news-desc">
