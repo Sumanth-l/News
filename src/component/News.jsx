@@ -164,28 +164,31 @@ const toggle=()=>{
   </div>
 )}
 
-      {news.length > 0 &&
-        news.map((item, id) => (
-  <div className="news-card" key={id}>
-    <div>
-      <img src={item.image_url} alt={item.title} />
-    </div>
+      <div className="news-grid">
+  {news.length > 0 &&
+    news.map((item, id) => (
+      <div className="news-card" key={id}>
+        <div>
+          <img src={item.image_url} alt={item.title} />
+        </div>
 
-   {!Home && <button
-  className={savedLinks.includes(item.link) ? "save-btn saved" : "save-btn"}
-  onClick={() => handleSave(item)}
->
-  ★
-</button>
-}
+        {!Home && (
+          <button
+            className={savedLinks.includes(item.link) ? "save-btn saved" : "save-btn"}
+            onClick={() => handleSave(item)}
+          >
+            ★
+          </button>
+        )}
 
+        <div className="news-desc">
+          <h2>{item.title}</h2>
+          <p>{item.description}</p>
+        </div>
+      </div>
+    ))}
+</div>
 
-    <div className="news-desc">
-      <h2>{item.title}</h2>
-      <p>{item.description}</p>
-    </div>
-  </div>
-))}
 
      
       {showButton && (
